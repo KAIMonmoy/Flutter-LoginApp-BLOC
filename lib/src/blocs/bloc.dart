@@ -1,6 +1,8 @@
 import 'dart:async';
 
-class Bloc {
+import 'validators.dart';
+
+class Bloc extends Object with Validators {
   final _emailController = StreamController<String>();
   final _passwordController = StreamController<String>();
 
@@ -9,6 +11,15 @@ class Bloc {
   Function(String) get changePassword => _passwordController.sink.add;
 
   //Add Data To Stream
-  Stream<String> get email => _emailController.stream;
-  Stream<String> get password => _passwordController.stream;
+  Stream<String> get email => _emailController.stream.transform(validateEmail);
+  Stream<String> get password =>
+      _passwordController.stream.transform(validatePassword);
+
+  //Clean Up Objects
+  dispose() {
+    _emailController.close();
+    _passwordController.close();
+  }
 }
+
+final bloc = Bloc();
