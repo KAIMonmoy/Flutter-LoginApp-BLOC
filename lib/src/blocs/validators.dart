@@ -20,9 +20,10 @@ class Validators {
       } else {
         if (password.length < 4)
           sink.addError('Password must be atleast 4 characters!');
-        if (password.length > 255)
+        else if (password.length > 255)
           sink.addError('Password can be atmost 255 characters!');
-        sink.addError('Please use valid characters!');
+        else
+          sink.addError('Please use valid characters!');
       }
     },
   );
