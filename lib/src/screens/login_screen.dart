@@ -64,6 +64,7 @@ class LoginScreen extends StatelessWidget {
           child: Text('Login'),
           color: Colors.lightBlue,
           onPressed: snapshot.hasError ? null : () {},
+          disabledColor: Colors.redAccent,
         );
       },
     );
